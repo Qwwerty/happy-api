@@ -4,7 +4,7 @@ Happy - Create orphanages
 
 # RFs (Requisitos funcionais)
 
-- [ ] Deve ser possível cadastrar um orfanato.
+- [x] Deve ser possível cadastrar um orfanato.
 - [ ] Deve ser possível listar os orfanatos. 
 - [ ] Deve ser possível buscar por ID um orfanato.
 
@@ -14,4 +14,5 @@ Happy - Create orphanages
 
 # RNFs (Requisitos não-funcionais)
 
-- [ ] Os dados da aplicação precisam ser persistidos em um banco PostgreSql
+- [ ] Os dados da aplicação precisam ser persistidos em um banco PostgreSql.
+- [ ] As imagens do orfanato precisam ser salvas no S3 da AWS.

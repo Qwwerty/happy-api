@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Orphanage {
+  id                      String   @id @default(uuid())
+  name                    String
+  description             String?
+  phone                   String?
+  latitude                Decimal
+  longitude               Decimal
+  visiting_instructions   String?
+  visiting_hours          String?
+  are_open_on_the_weekend Boolean  @default(false)
+  created_at              DateTime @default(now())
+
+  photos Photo[]
+
+  @@map("orphanages")
+}
+
+model Photo {
+  id   String @id @default(uuid())
+  name String
+  url  String
+
+  Orphanage    Orphanage @relation(fields: [orphanage_id], references: [id])
+  orphanage_id String
+
+  @@map("photos")
+}
