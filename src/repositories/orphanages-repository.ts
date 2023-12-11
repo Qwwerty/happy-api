@@ -1,5 +1,4 @@
 import { Orphanage } from '@prisma/client'
-import { Decimal, DecimalJsLike } from '@prisma/client/runtime/library'
 
 export interface IPhoto {
   name: string
@@ -11,15 +10,16 @@ export interface IOrphanage {
   name: string
   description?: string | null
   phone?: string | null
-  latitude: Decimal | DecimalJsLike | number | string
-  longitude: Decimal | DecimalJsLike | number | string
+  latitude: number
+  longitude: number
   visiting_instructions?: string | null
   visiting_hours?: string | null
   are_open_on_the_weekend?: boolean
   created_at?: Date | string
-  photos: IPhoto[]
+  photos?: IPhoto[]
 }
 
 export interface OrphanagesRepository {
+  findMany(): Promise<Orphanage[]>
   create(data: IOrphanage): Promise<Orphanage>
 }
