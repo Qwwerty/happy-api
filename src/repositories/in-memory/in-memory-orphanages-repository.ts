@@ -5,6 +5,16 @@ import type { IOrphanage, OrphanagesRepository } from '../orphanages-repository'
 export class InMemoryOrphanagesRepository implements OrphanagesRepository {
   public items: Orphanage[] = []
 
+  async findById(id: string) {
+    const orphanage = this.items.find((item) => item.id === id)
+
+    if (!orphanage) {
+      return null
+    }
+
+    return orphanage
+  }
+
   async findMany() {
     return this.items
   }

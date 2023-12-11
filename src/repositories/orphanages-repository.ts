@@ -20,6 +20,7 @@ export interface IOrphanage {
 }
 
 export interface OrphanagesRepository {
+  findById(id: string): Promise<Orphanage | null>
   findMany(): Promise<Orphanage[]>
   create(data: IOrphanage): Promise<Orphanage>
 }
