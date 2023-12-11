@@ -6,7 +6,7 @@ Happy - Create orphanages
 
 - [x] Deve ser possível cadastrar um orfanato.
 - [x] Deve ser possível listar os orfanatos. 
-- [ ] Deve ser possível buscar por ID um orfanato.
+- [x] Deve ser possível buscar por ID um orfanato.
 
 # RNs (Regras de negócio)
 
