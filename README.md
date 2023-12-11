@@ -10,9 +10,9 @@ Happy - Create orphanages
 
 # RNs (Regras de negócio)
 
-- [ ] O usuário não deve poder cadastrar dois orfanatos na mesma localização.
+- [x] O usuário não deve poder cadastrar dois orfanatos na mesma localização.
 
 # RNFs (Requisitos não-funcionais)
 
-- [ ] Os dados da aplicação precisam ser persistidos em um banco PostgreSql.
+- [x] Os dados da aplicação precisam ser persistidos em um banco PostgreSql.
 - [ ] As imagens do orfanato precisam ser salvas no S3 da AWS.

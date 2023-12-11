@@ -1,9 +1,27 @@
 import { Orphanage, Prisma } from '@prisma/client'
 import crypto from 'node:crypto'
-import type { IOrphanage, OrphanagesRepository } from '../orphanages-repository'
+import type {
+  ILocation,
+  IOrphanage,
+  OrphanagesRepository,
+} from '../orphanages-repository'
 
 export class InMemoryOrphanagesRepository implements OrphanagesRepository {
   public items: Orphanage[] = []
+
+  async findByLocation(data: ILocation) {
+    const orphanage = this.items.find(
+      (item) =>
+        item.latitude.toNumber() === data.latitude &&
+        item.longitude.toNumber() === data.longitude,
+    )
+
+    if (!orphanage) {
+      return null
+    }
+
+    return orphanage
+  }
 
   async findById(id: string) {
     const orphanage = this.items.find((item) => item.id === id)

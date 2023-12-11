@@ -1,5 +1,10 @@
 import { Orphanage } from '@prisma/client'
 
+export interface ILocation {
+  latitude: number
+  longitude: number
+}
+
 export interface IPhoto {
   name: string
   url: string
@@ -20,6 +25,7 @@ export interface IOrphanage {
 }
 
 export interface OrphanagesRepository {
+  findByLocation(data: ILocation): Promise<Orphanage | null>
   findById(id: string): Promise<Orphanage | null>
   findMany(): Promise<Orphanage[]>
   create(data: IOrphanage): Promise<Orphanage>

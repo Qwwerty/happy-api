@@ -1,5 +1,6 @@
 import type { OrphanagesRepository } from '@/repositories/orphanages-repository'
 import { Orphanage } from '@prisma/client'
+import { OrphanageAlreadyExistsError } from './errors/orphanage-already-exists-error'
 
 interface Photo {
   name: string
@@ -36,6 +37,13 @@ export class CreateOrphanageUseCase {
     areOpenOnTheWeekend,
     photos,
   }: CreateOrphanageUseCaseRequest): Promise<CreateOrphanageUseCaseResponse> {
+    const alreadyExistsOrphanageSameLocation =
+      await this.orphanagesRepository.findByLocation({ latitude, longitude })
+
+    if (alreadyExistsOrphanageSameLocation) {
+      throw new OrphanageAlreadyExistsError()
+    }
+
     const orphanage = await this.orphanagesRepository.create({
       name,
       description,
