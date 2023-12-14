@@ -32,7 +32,7 @@ model Photo {
   name String
   url  String
 
-  Orphanage    Orphanage @relation(fields: [orphanage_id], references: [id])
+  Orphanage    Orphanage @relation(fields: [orphanage_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   orphanage_id String
 
   @@map("photos")
