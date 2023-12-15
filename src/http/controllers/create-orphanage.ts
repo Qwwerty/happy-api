@@ -1,5 +1,5 @@
 import { uploadFileS3 } from '@/lib/s3'
-import { makeCreateOrphanageUseCase } from '@/use-cases/factories/make-create-orphanage'
+import { makeCreateOrphanageUseCase } from '@/use-cases/factories/make-create-orphanage-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
