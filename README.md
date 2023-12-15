@@ -15,4 +15,4 @@ Happy - Create orphanages
 # RNFs (Requisitos não-funcionais)
 
 - [x] Os dados da aplicação precisam ser persistidos em um banco PostgreSql.
-- [ ] As imagens do orfanato precisam ser salvas no S3 da AWS.
+- [x] As imagens do orfanato precisam ser salvas no S3 da AWS.

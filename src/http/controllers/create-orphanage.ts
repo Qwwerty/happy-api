@@ -20,7 +20,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       return Math.abs(value) <= 180
     }),
     visitingInstructions: z.string(),
-    visitingHours: z.coerce.string(),
+    visitingHours: z.string(),
     areOpenOnTheWeekend: z.coerce.boolean(),
   })
 
@@ -34,6 +34,14 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     visitingHours,
     areOpenOnTheWeekend,
   } = createOrphanageSchema.parse(request.body)
+
+  const createOrphanageImagesSchema = z.array(
+    z.object({
+      mimetype: z.enum(['image/png', 'image/jpg', 'image/jpeg']),
+    }),
+  )
+
+  createOrphanageImagesSchema.parse(request.files)
 
   const filesPromises = []
   let photos = [] as Array<IPhoto>

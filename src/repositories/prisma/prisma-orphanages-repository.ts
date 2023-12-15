@@ -22,13 +22,20 @@ export class PrismaOrphanagesRepository implements OrphanagesRepository {
       where: {
         id,
       },
+      include: {
+        photos: true,
+      },
     })
 
     return orphanage
   }
 
   async findMany() {
-    const orphanages = await prisma.orphanage.findMany()
+    const orphanages = await prisma.orphanage.findMany({
+      include: {
+        photos: true,
+      },
+    })
 
     return orphanages
   }
@@ -57,6 +64,9 @@ export class PrismaOrphanagesRepository implements OrphanagesRepository {
         photos: {
           create: [...photos],
         },
+      },
+      include: {
+        photos: true,
       },
     })
 

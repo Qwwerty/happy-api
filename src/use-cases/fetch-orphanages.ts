@@ -1,10 +1,8 @@
-import type {
-  IOrphanage,
-  OrphanagesRepository,
-} from '@/repositories/orphanages-repository'
+import type { OrphanagesRepository } from '@/repositories/orphanages-repository'
+import { Orphanage } from '@prisma/client'
 
 interface FetchOrphanagesUseCaseResponse {
-  orphanages: IOrphanage[]
+  orphanages: Orphanage[]
 }
 
 export class FetchOrphanagesUseCase {
