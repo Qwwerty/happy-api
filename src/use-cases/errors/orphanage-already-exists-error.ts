@@ -1,5 +1,5 @@
 export class OrphanageAlreadyExistsError extends Error {
   constructor() {
-    super('Resource not found.')
+    super('Orphanage already exists.')
   }
 }

@@ -1,5 +1,6 @@
 import fastify from 'fastify'
 import fastifyMulter from 'fastify-multer'
+import fastifyCors from '@fastify/cors'
 
 import { ZodError } from 'zod'
 import { env } from './env'
@@ -8,6 +9,7 @@ import { orphanagesRoutes } from './http/controllers/routes'
 export const app = fastify()
 
 app.register(fastifyMulter.contentParser)
+app.register(fastifyCors)
 
 app.register(orphanagesRoutes)
 

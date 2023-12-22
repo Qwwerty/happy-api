@@ -1,4 +1,5 @@
 import { uploadFileS3 } from '@/lib/s3'
+import { OrphanageAlreadyExistsError } from '@/use-cases/errors/orphanage-already-exists-error'
 import { makeCreateOrphanageUseCase } from '@/use-cases/factories/make-create-orphanage-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
@@ -56,17 +57,23 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
 
   const createOrphanageUseCase = makeCreateOrphanageUseCase()
 
-  await createOrphanageUseCase.execute({
-    name,
-    description,
-    phone,
-    latitude,
-    longitude,
-    visitingInstructions,
-    visitingHours,
-    areOpenOnTheWeekend,
-    photos,
-  })
+  try {
+    await createOrphanageUseCase.execute({
+      name,
+      description,
+      phone,
+      latitude,
+      longitude,
+      visitingInstructions,
+      visitingHours,
+      areOpenOnTheWeekend,
+      photos,
+    })
+  } catch (error) {
+    if (error instanceof OrphanageAlreadyExistsError) {
+      return reply.status(400).send({ message: error.message })
+    }
+  }
 
   return reply.status(201).send()
 }
