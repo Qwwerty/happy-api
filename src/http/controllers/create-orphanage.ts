@@ -11,17 +11,20 @@ interface IPhoto {
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
   const createOrphanageSchema = z.object({
-    name: z.string(),
-    description: z.string().nullable(),
-    phone: z.string(),
+    name: z.string().min(3, 'Minimum 3 characters.'),
+    description: z.string().min(20, 'Minimum 20 characters.'),
+    phone: z
+      .string()
+      .min(16, 'Invalid phone.')
+      .transform((value) => value.replace(/[()\s-_]/g, '').trim()),
     latitude: z.coerce.number().refine((value) => {
       return Math.abs(value) <= 90
     }),
     longitude: z.coerce.number().refine((value) => {
       return Math.abs(value) <= 180
     }),
-    visitingInstructions: z.string(),
-    visitingHours: z.string(),
+    visitingInstructions: z.string().min(10, 'Minimum 10 characters.'),
+    visitingHours: z.string().min(1, 'Minimum 1 characters.'),
     areOpenOnTheWeekend: z.coerce.boolean(),
   })
 
